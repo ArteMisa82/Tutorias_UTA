@@ -1,33 +1,43 @@
 # Prueba cruzada e iteración
 
-## Tarea evaluada
+## 1. Objetivo de la prueba
 
-Reservar una tutoría para el jueves y luego cambiar el horario.
+Evaluar si un usuario externo al equipo puede completar el flujo principal
+del prototipo Tutoría Fácil UTA sin asistencia, identificando posibles
+errores, dudas u oportunidades de mejora.
 
-## Resultados
+## 2. Tarea evaluada
+
+Se solicitó al participante realizar la siguiente tarea:
+
+> Reservar una tutoría para el jueves y luego cambiar el horario.
+
+## 3. Participante
+
+La prueba fue realizada por una persona perteneciente a otro equipo.
+
+## 4. Resultados
 
 - Completó la tarea: Sí.
-- Tiempo: 55 segundos.
+- Tiempo empleado: 55 segundos.
 - Necesitó ayuda: No.
-- Errores o dudas observables: No se observaron errores ni dudas.
-- Comentario: El participante indicó que la interfaz le parecía visualmente muy simple.
+- Errores observados: Ninguno.
+- Dudas observadas: Ninguna.
+- Facilidad de uso observada: El participante encontró fácilmente las
+  acciones necesarias para completar la tarea.
 
-## Hallazgo
+## 5. Comentario del participante
 
-El flujo demostró ser comprensible y eficiente, ya que el participante
-completó la tarea en 55 segundos, sin ayuda y sin errores.
+El participante indicó que la interfaz le parecía visualmente muy simple.
 
-Sin embargo, se identificó una oportunidad de mejora en la presentación
-visual de la interfaz.
+## 6. Hallazgo
 
-## Iteración aplicada
+El flujo resultó comprensible para el participante, quien logró completar
+la tarea en 55 segundos, sin ayuda y sin presentar errores o dudas.
 
-Se mejoró la presentación visual mediante una nueva paleta de colores,
-mayor diferenciación entre tarjetas, sombras, espaciado, indicadores
-de progreso y una jerarquía visual más marcada.
-
-Se conservaron el flujo, las etiquetas y las acciones principales,
-debido a que durante la prueba demostraron ser comprensibles.
+El principal hallazgo obtenido no estuvo relacionado con la navegación
+o con la comprensión del flujo, sino con la presentación visual de la
+interfaz, que fue percibida como demasiado simple.
 
 ## Evidencia
 
