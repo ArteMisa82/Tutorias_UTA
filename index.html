@@ -80,8 +80,73 @@ function route(id){$$('.screen').forEach(x=>x.classList.remove('active'));$('#'+
 document.addEventListener('click',e=>{const r=e.target.closest('[data-route]');if(r){e.preventDefault();route(r.dataset.route)}});
 $('#teacher').addEventListener('change',e=>{state.teacher=e.target.value;$('#pTeacher').textContent=state.teacher||'Sin seleccionar';valid()});
 const slots=['08:00','09:00','10:00','11:00','14:00','15:00'];
-$$('.date').forEach((b,i)=>b.addEventListener('click',()=>{ $$('.date').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');state.date=b.dataset.date;state.time='';$('#pDate').textContent=state.date;$('#pTime').textContent='Sin seleccionar';renderTimes(i);valid()}));
-function renderTimes(day){$('#timeHint').textContent='Selecciona uno de los horarios disponibles.';$('#times').innerHTML='';slots.forEach((t,i)=>{const b=document.createElement('button');b.type='button';b.className='time';const occupied=(i+day)%4===1;b.textContent=t+(occupied?' · Ocupado':'');if(occupied){b.classList.add('occupied');b.disabled=true;b.setAttribute('aria-label',t+' ocupado')}else b.onclick=()=>{$$('.time').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');state.time=t;$('#pTime').textContent=t;valid()};$('#times').appendChild(b)})}
+$$('.date').forEach((b, i) => {
+  b.setAttribute('aria-pressed', 'false');
+
+  b.addEventListener('click', () => {
+    $$('.date').forEach(x => {
+      x.classList.remove('selected');
+      x.setAttribute('aria-pressed', 'false');
+    });
+
+    b.classList.add('selected');
+    b.setAttribute('aria-pressed', 'true');
+
+    state.date = b.dataset.date;
+    state.time = '';
+
+    $('#pDate').textContent = state.date;
+    $('#pTime').textContent = 'Sin seleccionar';
+
+    renderTimes(i);
+    valid();
+  });
+});
+function renderTimes(day) {
+  $('#timeHint').textContent =
+    'Selecciona uno de los horarios disponibles.';
+
+  $('#times').innerHTML = '';
+
+  slots.forEach((t, i) => {
+    const b = document.createElement('button');
+
+    b.type = 'button';
+    b.className = 'time';
+
+    const occupied = (i + day) % 4 === 1;
+
+    b.textContent = t + (occupied ? ' · Ocupado' : '');
+
+    if (occupied) {
+      b.classList.add('occupied');
+      b.disabled = true;
+      b.setAttribute('aria-label', t + ' ocupado');
+    } else {
+      b.setAttribute('aria-pressed', 'false');
+
+      b.onclick = () => {
+        $$('.time').forEach(x => {
+          x.classList.remove('selected');
+
+          if (!x.disabled) {
+            x.setAttribute('aria-pressed', 'false');
+          }
+        });
+
+        b.classList.add('selected');
+        b.setAttribute('aria-pressed', 'true');
+
+        state.time = t;
+        $('#pTime').textContent = t;
+
+        valid();
+      };
+    }
+
+    $('#times').appendChild(b);
+  });
+}
 function valid(){$('#continue').disabled=!(state.teacher&&state.date&&state.time)}
 $('#scheduleForm').addEventListener('submit',e=>{e.preventDefault();if($('#continue').disabled)return;$('#sTeacher').textContent=state.teacher;$('#sDate').textContent=state.date;$('#sTime').textContent=state.time;route('summary')});
 $('#confirm').onclick=()=>{state.confirmed=true;state.reprogram=false;$('#cTeacher').textContent=state.teacher;$('#cDate').textContent=state.date;$('#cTime').textContent=state.time;$('#reservationCode').textContent='TUT-2026-'+String(Math.floor(100+Math.random()*900));renderAppointments();route('confirmed')};
