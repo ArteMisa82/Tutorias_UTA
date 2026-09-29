@@ -49,11 +49,13 @@ main{max-width:1180px;margin:auto;padding:36px 24px 70px}.screen{display:none}.s
       <fieldset class="field" style="border:0;padding:0"><legend>Selecciona una fecha</legend><div class="dates">
         <button type="button" class="date" data-date="Lunes 5 de octubre de 2026"><span>Lun</span><strong>5</strong><small>Oct</small></button><button type="button" class="date" data-date="Martes 6 de octubre de 2026"><span>Mar</span><strong>6</strong><small>Oct</small></button><button type="button" class="date" data-date="Miércoles 7 de octubre de 2026"><span>Mié</span><strong>7</strong><small>Oct</small></button><button type="button" class="date" data-date="Jueves 8 de octubre de 2026"><span>Jue</span><strong>8</strong><small>Oct</small></button><button type="button" class="date" data-date="Viernes 9 de octubre de 2026"><span>Vie</span><strong>9</strong><small>Oct</small></button>
       </div></fieldset>
-      <fieldset class="field" style="border:0;padding:0"><legend>Horario disponible</legend><div class="hint" id="timeHint">Primero selecciona una fecha.</div><div class="times" id="times"></div><div class="legend"><span><i class="dot free"></i>Disponible</span><span><i class="dot sel"></i>Seleccionado</span><span><i class="dot"></i>Ocupado</span></div></fieldset>
+      <fieldset class="field" style="border:0;padding:0"><legend>Horario disponible</legend><div class="hint" id="timeHint" role="status" aria-live="polite">
+  Primero selecciona una fecha.
+</div><div class="times" id="times"></div><div class="legend"><span><i class="dot free"></i>Disponible</span><span><i class="dot sel"></i>Seleccionado</span><span><i class="dot"></i>Ocupado</span></div></fieldset>
       <button class="btn btn-primary full" id="continue" disabled>Continuar a revisión →</button>
     </form>
-    <aside class="card side-card"><h2>Resumen de tu selección</h2><div class="summary-row"><small>Docente</small><strong id="pTeacher">Sin seleccionar</strong></div><div class="summary-row"><small>Fecha</small><strong id="pDate">Sin seleccionar</strong></div><div class="summary-row"><small>Hora</small><strong id="pTime">Sin seleccionar</strong></div><div class="summary-row"><small>Modalidad</small><strong>Presencial</strong></div><div class="notice">ℹ️ Podrás revisar y corregir esta información antes de confirmar la reserva.</div></aside>
-  </div>
+<aside class="card side-card" aria-label="Resumen de la tutoría seleccionada"></aside>  
+</div>
 </section>
 
 <section class="screen" id="summary">
