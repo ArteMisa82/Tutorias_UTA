@@ -49,11 +49,13 @@ main{max-width:1180px;margin:auto;padding:36px 24px 70px}.screen{display:none}.s
       <fieldset class="field" style="border:0;padding:0"><legend>Selecciona una fecha</legend><div class="dates">
         <button type="button" class="date" data-date="Lunes 5 de octubre de 2026"><span>Lun</span><strong>5</strong><small>Oct</small></button><button type="button" class="date" data-date="Martes 6 de octubre de 2026"><span>Mar</span><strong>6</strong><small>Oct</small></button><button type="button" class="date" data-date="Miércoles 7 de octubre de 2026"><span>Mié</span><strong>7</strong><small>Oct</small></button><button type="button" class="date" data-date="Jueves 8 de octubre de 2026"><span>Jue</span><strong>8</strong><small>Oct</small></button><button type="button" class="date" data-date="Viernes 9 de octubre de 2026"><span>Vie</span><strong>9</strong><small>Oct</small></button>
       </div></fieldset>
-      <fieldset class="field" style="border:0;padding:0"><legend>Horario disponible</legend><div class="hint" id="timeHint">Primero selecciona una fecha.</div><div class="times" id="times"></div><div class="legend"><span><i class="dot free"></i>Disponible</span><span><i class="dot sel"></i>Seleccionado</span><span><i class="dot"></i>Ocupado</span></div></fieldset>
+      <fieldset class="field" style="border:0;padding:0"><legend>Horario disponible</legend><div class="hint" id="timeHint" role="status" aria-live="polite">
+  Primero selecciona una fecha.
+</div><div class="times" id="times"></div><div class="legend"><span><i class="dot free"></i>Disponible</span><span><i class="dot sel"></i>Seleccionado</span><span><i class="dot"></i>Ocupado</span></div></fieldset>
       <button class="btn btn-primary full" id="continue" disabled>Continuar a revisión →</button>
     </form>
-    <aside class="card side-card"><h2>Resumen de tu selección</h2><div class="summary-row"><small>Docente</small><strong id="pTeacher">Sin seleccionar</strong></div><div class="summary-row"><small>Fecha</small><strong id="pDate">Sin seleccionar</strong></div><div class="summary-row"><small>Hora</small><strong id="pTime">Sin seleccionar</strong></div><div class="summary-row"><small>Modalidad</small><strong>Presencial</strong></div><div class="notice">ℹ️ Podrás revisar y corregir esta información antes de confirmar la reserva.</div></aside>
-  </div>
+<aside class="card side-card" aria-label="Resumen de la tutoría seleccionada"></aside>  
+</div>
 </section>
 
 <section class="screen" id="summary">
@@ -80,8 +82,73 @@ function route(id){$$('.screen').forEach(x=>x.classList.remove('active'));$('#'+
 document.addEventListener('click',e=>{const r=e.target.closest('[data-route]');if(r){e.preventDefault();route(r.dataset.route)}});
 $('#teacher').addEventListener('change',e=>{state.teacher=e.target.value;$('#pTeacher').textContent=state.teacher||'Sin seleccionar';valid()});
 const slots=['08:00','09:00','10:00','11:00','14:00','15:00'];
-$$('.date').forEach((b,i)=>b.addEventListener('click',()=>{ $$('.date').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');state.date=b.dataset.date;state.time='';$('#pDate').textContent=state.date;$('#pTime').textContent='Sin seleccionar';renderTimes(i);valid()}));
-function renderTimes(day){$('#timeHint').textContent='Selecciona uno de los horarios disponibles.';$('#times').innerHTML='';slots.forEach((t,i)=>{const b=document.createElement('button');b.type='button';b.className='time';const occupied=(i+day)%4===1;b.textContent=t+(occupied?' · Ocupado':'');if(occupied){b.classList.add('occupied');b.disabled=true;b.setAttribute('aria-label',t+' ocupado')}else b.onclick=()=>{$$('.time').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');state.time=t;$('#pTime').textContent=t;valid()};$('#times').appendChild(b)})}
+$$('.date').forEach((b, i) => {
+  b.setAttribute('aria-pressed', 'false');
+
+  b.addEventListener('click', () => {
+    $$('.date').forEach(x => {
+      x.classList.remove('selected');
+      x.setAttribute('aria-pressed', 'false');
+    });
+
+    b.classList.add('selected');
+    b.setAttribute('aria-pressed', 'true');
+
+    state.date = b.dataset.date;
+    state.time = '';
+
+    $('#pDate').textContent = state.date;
+    $('#pTime').textContent = 'Sin seleccionar';
+
+    renderTimes(i);
+    valid();
+  });
+});
+function renderTimes(day) {
+  $('#timeHint').textContent =
+    'Selecciona uno de los horarios disponibles.';
+
+  $('#times').innerHTML = '';
+
+  slots.forEach((t, i) => {
+    const b = document.createElement('button');
+
+    b.type = 'button';
+    b.className = 'time';
+
+    const occupied = (i + day) % 4 === 1;
+
+    b.textContent = t + (occupied ? ' · Ocupado' : '');
+
+    if (occupied) {
+      b.classList.add('occupied');
+      b.disabled = true;
+      b.setAttribute('aria-label', t + ' ocupado');
+    } else {
+      b.setAttribute('aria-pressed', 'false');
+
+      b.onclick = () => {
+        $$('.time').forEach(x => {
+          x.classList.remove('selected');
+
+          if (!x.disabled) {
+            x.setAttribute('aria-pressed', 'false');
+          }
+        });
+
+        b.classList.add('selected');
+        b.setAttribute('aria-pressed', 'true');
+
+        state.time = t;
+        $('#pTime').textContent = t;
+
+        valid();
+      };
+    }
+
+    $('#times').appendChild(b);
+  });
+}
 function valid(){$('#continue').disabled=!(state.teacher&&state.date&&state.time)}
 $('#scheduleForm').addEventListener('submit',e=>{e.preventDefault();if($('#continue').disabled)return;$('#sTeacher').textContent=state.teacher;$('#sDate').textContent=state.date;$('#sTime').textContent=state.time;route('summary')});
 $('#confirm').onclick=()=>{state.confirmed=true;state.reprogram=false;$('#cTeacher').textContent=state.teacher;$('#cDate').textContent=state.date;$('#cTime').textContent=state.time;$('#reservationCode').textContent='TUT-2026-'+String(Math.floor(100+Math.random()*900));renderAppointments();route('confirmed')};
