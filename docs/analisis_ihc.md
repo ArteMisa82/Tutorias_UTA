@@ -50,3 +50,43 @@ Durante la interacción:
 
 Este flujo busca mantener visible el estado del sistema y reducir errores
 antes de confirmar una acción.
+
+## 6. Requisitos de usuario
+
+### RU-01 — Consultar disponibilidad
+El estudiante debe poder visualizar las fechas y horarios disponibles
+para una tutoría.
+
+### RU-02 — Identificar horarios ocupados
+El sistema debe diferenciar claramente los horarios disponibles de
+aquellos que no pueden seleccionarse.
+
+### RU-03 — Revisar la reserva
+El estudiante debe poder revisar el docente, fecha, hora y modalidad
+antes de confirmar la tutoría.
+
+### RU-04 — Confirmar la tutoría
+El sistema debe proporcionar una confirmación visible después de
+registrar correctamente la tutoría.
+
+### RU-05 — Reprogramar
+El estudiante debe poder seleccionar un nuevo horario para una tutoría
+cuando necesite modificar su cita.
+
+## 7. Criterios de calidad
+
+Para evaluar la experiencia de uso se consideran:
+
+- Efectividad: el usuario debe poder completar la tarea correctamente.
+- Eficiencia: el flujo debe requerir pocos pasos y un tiempo reducido.
+- Satisfacción: la interfaz debe resultar clara y comprensible.
+- Prevención de errores: los horarios ocupados no deben poder seleccionarse.
+- Recuperación: el usuario debe poder regresar y corregir información antes
+  de confirmar.
+
+## 8. Conclusión
+
+El diseño de Tutoría Fácil UTA prioriza un flujo breve y comprensible.
+La información se presenta progresivamente para evitar sobrecargar al
+usuario y se permite revisar la información antes de ejecutar la
+confirmación final.
