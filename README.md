@@ -157,6 +157,17 @@ evidencias/
 
 ---
 
+## Actividad de arquitectura de interfaces
+
+El anexo de la actividad desarrolla el flujo para reservar una tutoría académica en TutoríasFácil. Incluye cuatro requisitos, sitemap, navegación, caminos de éxito y error, estados de componentes, seis wireframes de baja fidelidad y una tabla de trazabilidad.
+
+- [Actividad de arquitectura de interfaces](docs/Actividad_Arquitectura_Interfaces_TutoriasFacil.pdf)
+- [Distribución propuesta del trabajo](docs/Distribucion_Actividad_Arquitectura_TutoriasFacil.pdf) ([Word editable](docs/Distribucion_Actividad_Arquitectura_TutoriasFacil.docx))
+
+La distribución es una propuesta para organizar estas secciones; los aportes realizados se documentan de acuerdo con el trabajo y el historial real del equipo.
+
+---
+
 ## Tecnologías utilizadas
 
 - HTML5
@@ -205,7 +216,10 @@ Tutoria-Facil-UTA/
 │
 ├── docs/
 │   ├── Informe_Tutoria_Facil_UTA.pdf
-│   └── analisis-ihc.md
+│   ├── analisis_ihc.md
+│   ├── Actividad_Arquitectura_Interfaces_TutoriasFacil.pdf
+│   ├── Distribucion_Actividad_Arquitectura_TutoriasFacil.docx
+│   └── Distribucion_Actividad_Arquitectura_TutoriasFacil.pdf
 │
 ├── evidencias/
 │   ├── antes_iteracion.png
@@ -225,10 +239,10 @@ Cada integrante trabajó en una rama independiente asociada a una tarea específ
 
 | Integrante | Responsabilidad | Rama |
 |---|---|---|
-| Elizabet | Análisis IHC y requisitos | `feature/analisis-ihc` |
-| Andrew | Accesibilidad y usabilidad | `feature/accesibilidad` |
-| Sebastian | Mejoras visuales y responsive | `feature/mejoras-visuales` |
-| Veronica | Prueba cruzada e iteración | `feature/prueba-iteracion` |
+| Carolina Elizabeth De la Cruz Llundo (@Elizabeth1925) | Análisis IHC y requisitos | `feature/analisis-ihc` |
+| Andrew Johan Lara Fernández (@alara05) | Accesibilidad y usabilidad | `feature/accesibilidad` |
+| Freddy Sebastián Vaca Ramos (@Sebas2h) | Mejoras visuales y responsive | `feature/mejoras-visuales` |
+| Verónica Anabel Jaque Bonilla (@ArteMisa82) | Prueba cruzada e iteración | `feature/prueba-iteracion` |
 
 El flujo de colaboración utilizado fue:
 
@@ -271,10 +285,10 @@ Las revisiones de los Pull Requests se distribuyeron entre los integrantes para 
 
 ## Integrantes
 
-- Elizabet
-- Andrew
-- Sebastian
-- Veronica
+- Carolina Elizabeth De la Cruz Llundo (@Elizabeth1925)
+- Andrew Johan Lara Fernández (@alara05)
+- Freddy Sebastián Vaca Ramos (@Sebas2h)
+- Verónica Anabel Jaque Bonilla (@ArteMisa82)
 
 ---
 
